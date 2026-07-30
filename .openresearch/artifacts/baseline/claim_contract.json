@@ -1,0 +1,10 @@
+{
+  "artifact_status": "Historical rejected baseline",
+  "paper": "arXiv:2602.15503",
+  "claim_id": "claim_1",
+  "source_anchor": "Lipschitz MLP layer, equation (1), Lemma 1",
+  "exact_statement": "For every W, b and tau in [0, 2/||W||_2^2], F(x)=x-tau W^T ReLU(Wx+b) is an explicit Euler step and is 1-Lipschitz on R^d.",
+  "baseline_tested_scope": "One d=1 identity instance with three hidden units.",
+  "baseline_verdict": "BLOCKED",
+  "reason": "An identity at one point does not establish the universal Lipschitz quantifiers."
+}

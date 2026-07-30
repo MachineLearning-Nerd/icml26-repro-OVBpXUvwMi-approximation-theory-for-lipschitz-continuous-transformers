@@ -1,0 +1,50 @@
+{
+  "artifact_status": "Historical rejected baseline",
+  "scientific_scope": "toy",
+  "paper": "arXiv:2602.15503",
+  "judged_space_revision": "df0a8cc0348a130d23bce8f00c22eaa00452aa3d",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    7,
+    11
+  ],
+  "compute": {
+    "estimated_cores": 1,
+    "selected_flavor": "local CPU",
+    "allocated_logical_cpus": 8,
+    "affinity_cpus": null,
+    "python": "3.12.11",
+    "runtime_seconds": 1.1987265840289183
+  },
+  "results": {
+    "dimension": 1,
+    "max_tokens": 30,
+    "layers": 4,
+    "mlp_euler_error": 0.0,
+    "attention_euler_error": 0.0,
+    "sampled_query_ratios": {
+      "0.2": 0.985601944563606,
+      "0.5": 0.9640048614090154,
+      "0.9": 0.9352087505362264
+    },
+    "sampled_deep_ratio": 0.969418562336637,
+    "circular_fit_error": 1.3322676295501878e-15
+  },
+  "checks": {
+    "claim_1_euler_identity": true,
+    "claim_2_sampled_query_ratios": true,
+    "claim_3_four_layer_sampled_ratio": true,
+    "claim_4_circular_target_fit": true,
+    "claim_5_circular_basis_fit": true
+  },
+  "all_checks_passed": true,
+  "limitations": [
+    "Finite d=1 samples cannot verify universally quantified Lipschitz claims.",
+    "The approximation target is itself a basis column, so the fit is circular.",
+    "This run preserves the judged 5/10 baseline and is not current verification."
+  ]
+}
