@@ -43,6 +43,12 @@ EXPECTED_RULES = {
     ),
 }
 
+EXPECTED_SOURCE = {
+    "url": "https://export.arxiv.org/e-print/2602.15503",
+    "retrieved_utc_date": "2026-07-30",
+    "sha256": "d7d496f38d43b90a9056463183dd7368c4e620af49324a8b16f43f5d67dc80a2",
+}
+
 CLAIM_META = {
     "claim_1": {
         "verdict": "VERIFIED",
@@ -78,6 +84,8 @@ def verify_certificate(path: Path) -> dict:
     by_id = {node["id"]: node for node in nodes}
     errors = []
 
+    if certificate.get("source") != EXPECTED_SOURCE:
+        errors.append("paper source identity differs from trusted kernel")
     if len(by_id) != len(nodes):
         errors.append("duplicate proof node id")
     if set(by_id) != set(EXPECTED_RULES):

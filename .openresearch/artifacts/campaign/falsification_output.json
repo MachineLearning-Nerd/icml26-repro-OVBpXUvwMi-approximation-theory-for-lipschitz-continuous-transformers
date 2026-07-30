@@ -1,0 +1,36 @@
+{
+  "run_id": "b8f7979e-85aa-480e-8652-1519c747b9c8",
+  "git_sha": "1d043ee86ed9baa8db743ad1d4d477d7ece4a949",
+  "seed": 260215503,
+  "compute": {
+    "estimated_cores": 2,
+    "selected_flavor": "Hugging Face cpu-upgrade",
+    "allocated_logical_cpus": 64,
+    "thread_limit": 1,
+    "provider_runtime_seconds": 16,
+    "audit_runtime_seconds": 0.2493354498874396
+  },
+  "claim_1": {
+    "assumption_satisfying_trials": 1000,
+    "max_jacobian_norm": 1.0000000000000007,
+    "counterexample_found": false
+  },
+  "claim_2": {
+    "fixed_theta_trials": 1000,
+    "max_query_jacobian_norm": 0.9999999932787749,
+    "counterexample_found": false,
+    "uniform_theta_boundary_ratios": [2.0, 20.0, 200.0, 2000.0]
+  },
+  "claim_3": {
+    "max_query_product": 0.996023516607951,
+    "max_finite_context_bound": 614086.8156677303,
+    "counterexample_found": false
+  },
+  "claims_4_5": {
+    "complete_finite_metric_trials": 400,
+    "max_lattice_envelope_error": 4.440892098500626e-16,
+    "counterexample_found": false
+  },
+  "exact_claim_counterexample_found": false,
+  "controls_triggered": true
+}

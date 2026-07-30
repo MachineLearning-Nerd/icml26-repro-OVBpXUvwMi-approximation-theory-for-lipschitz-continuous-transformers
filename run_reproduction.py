@@ -22,6 +22,7 @@ import numpy as np
 
 from reproduction.independent_checker import run_independent_checks
 from reproduction.negative_controls import run_negative_controls
+from reproduction.candidate_validator import validate_candidate
 from reproduction.proof_verifier import verify_certificate
 
 
@@ -179,6 +180,7 @@ def main() -> int:
     proof = verify_certificate(Path("reproduction/proof_dag.json"))
     independent = run_independent_checks()
     controls = run_negative_controls()
+    candidate = validate_candidate()
     result = {
         "campaign_stage": "direct symbolic proof certificates",
         "fixed_command": "uv run --frozen python run_reproduction.py",
@@ -197,6 +199,7 @@ def main() -> int:
         "proof_certificate": proof,
         "independent_checker": independent,
         "negative_controls": controls,
+        "candidate_validation": candidate,
         "compute": {
             "estimated_cores": 1,
             "selected_flavor": "local CPU",
@@ -209,6 +212,7 @@ def main() -> int:
         and proof["all_passed"]
         and independent["all_passed"]
         and controls["all_rejected"]
+        and candidate["passed"]
     )
 
     for claim_id in range(1, 6):
