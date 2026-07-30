@@ -19,6 +19,8 @@ from pathlib import Path
 
 import numpy as np
 
+import falsification_audit
+
 
 SEEDS = [0, 1, 2, 3, 5, 7, 11]
 
@@ -171,15 +173,12 @@ def run_baseline() -> dict:
 def main() -> int:
     result = run_baseline()
     artifact_dir = Path(".openresearch/artifacts/baseline")
-    artifact_dir.mkdir(parents=True, exist_ok=True)
-    raw_path = artifact_dir / "raw_results.json"
-    raw_path.write_text(json.dumps(result, indent=2) + "\n")
-    print(json.dumps(result, indent=2))
+    print(json.dumps({"baseline_regression": result}, indent=2))
     if not result["all_checks_passed"]:
         return 1
     if not math.isfinite(result["compute"]["runtime_seconds"]):
         return 1
-    return 0
+    return falsification_audit.main()
 
 
 if __name__ == "__main__":
