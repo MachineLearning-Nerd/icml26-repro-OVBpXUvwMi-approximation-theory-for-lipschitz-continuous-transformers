@@ -88,7 +88,7 @@ def claim_3_search(rng: np.random.Generator) -> dict:
                 output = query_constant * output + context_constant * propagated
                 propagated *= 1 + context_constant
             max_query_product = max(max_query_product, query_product)
-            max_context_bound = max(max_context_bound, output)
+            max_context_bound = max(max_context_bound, float(output))
     return {
         "max_query_product": max_query_product,
         "max_finite_context_bound": max_context_bound,
@@ -156,7 +156,7 @@ def main() -> int:
             results["claims"]["claims_4_5"]["finite_domain_counterexample_found"],
         ]
     )
-    results["controls_triggered"] = (
+    results["controls_triggered"] = bool(
         results["claims"]["claim_2"]["wording_boundary"]["measure_lipschitz_ratios"][-1]
         > 1000
         and results["claims"]["claim_3"]["max_finite_context_bound"] > 1
