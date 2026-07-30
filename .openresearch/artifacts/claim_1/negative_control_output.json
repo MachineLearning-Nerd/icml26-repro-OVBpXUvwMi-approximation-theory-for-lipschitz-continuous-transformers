@@ -1,0 +1,5 @@
+{
+  "premise_changed": "tau=2.1/||W||^2 exceeds the closed admissible interval",
+  "observed_lipschitz": 1.1,
+  "rejected": true
+}

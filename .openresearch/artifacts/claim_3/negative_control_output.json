@@ -1,0 +1,5 @@
+{
+  "premise_changed": "one layer has query Lipschitz constant 1.01",
+  "observed_composition_bound": 1.01,
+  "rejected": true
+}

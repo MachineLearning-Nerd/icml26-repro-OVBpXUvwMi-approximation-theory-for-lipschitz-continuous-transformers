@@ -1,0 +1,6 @@
+{
+  "premise_changed": "affine functions separate points but are not a lattice",
+  "target": "absolute value on [-1,1]",
+  "best_affine_uniform_error_lower_bound": 0.5,
+  "rejected": true
+}

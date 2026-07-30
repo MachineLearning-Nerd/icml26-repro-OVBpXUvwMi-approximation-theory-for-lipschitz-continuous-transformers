@@ -1,0 +1,9 @@
+{
+  "claim_id": "claim_3",
+  "verdict": "VERIFIED",
+  "domain": "Every finite depth L and every T in the paper's class T_(d,Omega)",
+  "assumptions": ["Every layer satisfies its recursively defined compact-domain step bound"],
+  "quantifier": "All admissible depths, parameters, measures and queries",
+  "predicate": "Query Lipschitz constant is at most one and context W1 Lipschitz constant is finite",
+  "failure_condition": "Query constants multiply above one or the finite context recurrence diverges at finite depth"
+}

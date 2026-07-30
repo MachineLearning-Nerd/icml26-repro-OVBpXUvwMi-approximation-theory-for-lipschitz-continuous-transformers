@@ -14,10 +14,15 @@ for thread_env in (
 import json
 import math
 import platform
+import subprocess
 import time
 from pathlib import Path
 
 import numpy as np
+
+from reproduction.independent_checker import run_independent_checks
+from reproduction.negative_controls import run_negative_controls
+from reproduction.proof_verifier import verify_certificate
 
 
 SEEDS = [0, 1, 2, 3, 5, 7, 11]
@@ -169,11 +174,75 @@ def run_baseline() -> dict:
 
 
 def main() -> int:
-    result = run_baseline()
-    artifact_dir = Path(".openresearch/artifacts/baseline")
-    artifact_dir.mkdir(parents=True, exist_ok=True)
-    raw_path = artifact_dir / "raw_results.json"
-    raw_path.write_text(json.dumps(result, indent=2) + "\n")
+    started = time.perf_counter()
+    baseline = run_baseline()
+    proof = verify_certificate(Path("reproduction/proof_dag.json"))
+    independent = run_independent_checks()
+    controls = run_negative_controls()
+    result = {
+        "campaign_stage": "direct symbolic proof certificates",
+        "fixed_command": "uv run --frozen python run_reproduction.py",
+        "git_sha": subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip(),
+        "environment": {
+            "python": platform.python_version(),
+            "numpy": np.__version__,
+            "lockfile": "uv.lock",
+        },
+        "baseline_regression": baseline,
+        "proof_certificate": proof,
+        "independent_checker": independent,
+        "negative_controls": controls,
+        "compute": {
+            "estimated_cores": 1,
+            "selected_flavor": "local CPU",
+            "allocated_logical_cpus": os.cpu_count(),
+            "runtime_seconds": time.perf_counter() - started,
+        },
+    }
+    result["all_checks_passed"] = (
+        baseline["all_checks_passed"]
+        and proof["all_passed"]
+        and independent["all_passed"]
+        and controls["all_rejected"]
+    )
+
+    for claim_id in range(1, 6):
+        claim_dir = Path(f".openresearch/artifacts/claim_{claim_id}")
+        claim_dir.mkdir(parents=True, exist_ok=True)
+        (claim_dir / "raw_results.json").write_text(
+            json.dumps(
+                {
+                    "claim": proof["claims"][f"claim_{claim_id}"],
+                    "independent_checker": independent["checks"].get(
+                        f"claim_{claim_id}", independent["checks"].get("claims_4_5")
+                    ),
+                },
+                indent=2,
+            )
+            + "\n"
+        )
+        (claim_dir / "independent_checker_output.json").write_text(
+            json.dumps(independent, indent=2) + "\n"
+        )
+        (claim_dir / "negative_control_output.json").write_text(
+            json.dumps(
+                controls["controls"][f"claim_{claim_id}_"
+                + {
+                    1: "oversized_step",
+                    2: "oversized_attention_step",
+                    3: "expansive_layer",
+                    4: "remove_lattice",
+                    5: "remove_strict_margin",
+                }[claim_id]],
+                indent=2,
+            )
+            + "\n"
+        )
     print(json.dumps(result, indent=2))
     if not result["all_checks_passed"]:
         return 1

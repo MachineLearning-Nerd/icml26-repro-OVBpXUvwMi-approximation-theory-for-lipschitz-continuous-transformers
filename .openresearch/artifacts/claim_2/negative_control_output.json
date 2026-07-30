@@ -1,0 +1,5 @@
+{
+  "premise_changed": "eta=2.1/beta for a two-point context",
+  "observed_jacobian_norm_at_origin": 1.1,
+  "rejected": true
+}

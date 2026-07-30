@@ -1,0 +1,38 @@
+{
+  "source": {
+    "url": "https://export.arxiv.org/e-print/2602.15503",
+    "retrieved_utc_date": "2026-07-30",
+    "sha256": "d7d496f38d43b90a9056463183dd7368c4e620af49324a8b16f43f5d67dc80a2"
+  },
+  "nodes": [
+    {"id": "c1_gradient", "rule": "relu_potential_gradient", "depends_on": []},
+    {"id": "c1_jacobian", "rule": "relu_segment_jacobian", "depends_on": ["c1_gradient"]},
+    {"id": "c1_spectrum", "rule": "psd_spectral_interval", "depends_on": ["c1_jacobian"]},
+    {"id": "claim_1", "rule": "nonexpansive_piecewise_affine", "depends_on": ["c1_spectrum"]},
+
+    {"id": "c2_gradient", "rule": "log_partition_gradient", "depends_on": []},
+    {"id": "c2_hessian", "rule": "log_partition_covariance", "depends_on": ["c2_gradient"]},
+    {"id": "c2_smooth", "rule": "covariance_spectral_bound", "depends_on": ["c2_hessian"]},
+    {"id": "c2_query", "rule": "cocoercive_gradient_step", "depends_on": ["c2_smooth"]},
+    {"id": "c2_measure", "rule": "quotient_kr_bound", "depends_on": []},
+    {"id": "claim_2", "rule": "combine_query_measure", "depends_on": ["c2_query", "c2_measure"]},
+
+    {"id": "c3_query", "rule": "composition_product_bound", "depends_on": ["claim_1", "claim_2"]},
+    {"id": "c3_pushforward", "rule": "wasserstein_pushforward_bound", "depends_on": ["claim_1", "claim_2"]},
+    {"id": "c3_measure", "rule": "finite_lipschitz_recurrence", "depends_on": ["c3_pushforward"]},
+    {"id": "claim_3", "rule": "deep_transformer_bounds", "depends_on": ["c3_query", "c3_measure"]},
+
+    {"id": "c5_scaled_target", "rule": "strict_margin_scaling", "depends_on": []},
+    {"id": "c5_local_interpolants", "rule": "strict_separation_interpolants", "depends_on": ["c5_scaled_target"]},
+    {"id": "c5_first_cover", "rule": "compact_min_cover", "depends_on": ["c5_local_interpolants"]},
+    {"id": "c5_second_cover", "rule": "compact_max_cover", "depends_on": ["c5_first_cover"]},
+    {"id": "claim_5", "rule": "uniform_lattice_density", "depends_on": ["c5_second_cover"]},
+
+    {"id": "c4_lattice", "rule": "parallel_attention_lattice", "depends_on": ["claim_1", "claim_2"]},
+    {"id": "c4_kr", "rule": "kantorovich_rubinstein_witness", "depends_on": []},
+    {"id": "c4_scalar_resnet", "rule": "cited_scalar_resnet_density", "depends_on": []},
+    {"id": "c4_measure_primitive", "rule": "uniform_attention_integral", "depends_on": ["c4_kr", "c4_scalar_resnet"]},
+    {"id": "c4_separation", "rule": "product_metric_separation", "depends_on": ["c4_measure_primitive"]},
+    {"id": "claim_4", "rule": "apply_restricted_stone_weierstrass", "depends_on": ["claim_5", "c4_lattice", "c4_separation"]}
+  ]
+}

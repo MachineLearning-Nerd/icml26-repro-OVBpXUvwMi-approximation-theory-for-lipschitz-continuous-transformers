@@ -1,0 +1,35 @@
+{
+  "checker": "independent algebra and complete finite-domain checker",
+  "checks": {
+    "claim_1": {
+      "dimension": 16,
+      "hidden_width": 10,
+      "activation_regions_exhausted": 1024,
+      "max_segment_operator_norm": 1.0000000000000009,
+      "passed": true
+    },
+    "claim_2": {
+      "dimension": 32,
+      "tokens": 512,
+      "covariance_min_eigenvalue": 1.135580506098374e-06,
+      "covariance_max_eigenvalue": 0.11796507128661951,
+      "sup_norm_squared_bound": 1.8345056015086936,
+      "passed": true
+    },
+    "claim_3": {
+      "layers": 128,
+      "query_constant_product": 1.0,
+      "finite_context_constant": 3.858201434572288e+17,
+      "passed": true
+    },
+    "claims_4_5": {
+      "complete_finite_domain_points": 4,
+      "target_lipschitz": true,
+      "lattice_envelope_uniform_error": 0.0,
+      "dirac_w1": 1.2884098726725126,
+      "kr_witness_gap": 1.2884098726725126,
+      "passed": true
+    }
+  },
+  "all_passed": true
+}

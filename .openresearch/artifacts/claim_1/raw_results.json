@@ -1,0 +1,15 @@
+{
+  "claim": {
+    "verdict": "VERIFIED",
+    "confidence": "HIGH",
+    "basis": "Dimension-free Jacobian spectrum proof for every activation segment.",
+    "certificate_passed": true
+  },
+  "independent_checker": {
+    "dimension": 16,
+    "hidden_width": 10,
+    "activation_regions_exhausted": 1024,
+    "max_segment_operator_norm": 1.0000000000000009,
+    "passed": true
+  }
+}
