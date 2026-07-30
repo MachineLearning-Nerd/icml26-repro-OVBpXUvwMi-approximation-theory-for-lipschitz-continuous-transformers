@@ -1,0 +1,24 @@
+{
+  "retrieved_utc_date": "2026-07-30",
+  "paper": {
+    "arxiv_id": "2602.15503",
+    "source_archive_url": "https://export.arxiv.org/e-print/2602.15503",
+    "source_archive_sha256": "d7d496f38d43b90a9056463183dd7368c4e620af49324a8b16f43f5d67dc80a2",
+    "ar5iv_url": "https://ar5iv.labs.arxiv.org/html/2602.15503",
+    "ar5iv_sha256": "c4996a8ecb30cad3e652faf70a2c29430fc8d3a58c682e3535d4837f2a4ce1e5"
+  },
+  "references": {
+    "murari_2025_arxiv": "2505.12003",
+    "murari_full_text_sha256": "d99938557a22baaae6a470ce281cb850cb568c7249dded51f9a2d6a91b699131",
+    "anil_2019_arxiv": "1811.05381",
+    "anil_full_text_sha256": "65572cbf559cbe208333a5b245726ccaceff9a63a7c8d8138ef70199c2e2fcb2"
+  },
+  "live_verdict": {
+    "dataset_url": "https://huggingface.co/datasets/ICML-2026-agent-repro/verdicts/resolve/main/verdicts.json",
+    "dataset_sha256": "8bbd0d3eb4dfaace909009995f03f23a7c36430702c27c83db5a7339d5ad0db0",
+    "selection": "space_id == DineshAI/OVBpXUvwMi",
+    "judged_space_revision": "df0a8cc0348a130d23bce8f00c22eaa00452aa3d",
+    "score": "5/10",
+    "judge_time": "2026-07-30T04:36:59+00:00"
+  }
+}

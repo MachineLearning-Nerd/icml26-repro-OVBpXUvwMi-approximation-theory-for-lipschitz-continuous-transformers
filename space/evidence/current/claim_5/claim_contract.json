@@ -1,0 +1,9 @@
+{
+  "claim_id": "claim_5",
+  "verdict": "VERIFIED",
+  "domain": "Compact metric U and X with at least two product points",
+  "assumptions": ["L subset C_(1,C)", "L is a lattice", "strict Lipschitz point separation"],
+  "quantifier": "Every target in C_(1,C) and every positive uniform tolerance",
+  "predicate": "A finite max of finite mins from L approximates the target uniformly",
+  "failure_condition": "Scaling does not create strict margin or either compact subcover is missing"
+}

@@ -34,6 +34,8 @@ target-fitting evidence.
 - [Illustrated technical report](reports/lipschitz-transformer/report.md)
 - [Tutorial-style marimo notebook](notebooks/lipschitz_transformer_reproduction.py)
 - [Published evaluator logbook](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi)
+- [Exact published text mirror](space/pages/index.md) — Space revision
+  `c09976f4189cfa624d6dbb8ac4ef96d14eb113e3`
 
 ## Experiment log
 
@@ -44,7 +46,7 @@ target-fitting evidence.
 | [direct symbolic proof certificates](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/direct-symbolic-proof-certificates) | Replace finite sampling with arbitrary-object derivations, independent checks, and controls | `uv run --frozen python run_reproduction.py` | 25/25 nodes; five claims VERIFIED; 5/5 controls rejected | local CPU, one thread, 1.805 s |
 | [assumption-satisfying falsification audit](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/assumption-satisfying-falsification-audit) | Search exact-claim boundaries and counterexamples | `uv run --frozen python run_reproduction.py` | No exact counterexample; corrected Claim 2 parameter scope and Claim 3 depth scope | HF `cpu-upgrade`, one-thread limit, 16 s provider runtime |
 | [cumulative evaluator-visible candidate](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/cumulative-evaluator-visible-release-candidate) | Rerun all accepted checks and validate canonical navigation | `uv run --frozen python run_reproduction.py` | All checks passed; 16 pages and 17 historical files accounted for | local CPU, one thread, 1.270 s |
-| [release-gated artifact](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/release-gated-publication-artifact) | Fresh assembly, red team, report, notebook, and final regression | `uv run --frozen python run_reproduction.py` | Release candidate; final regression recorded in the experiment description | local CPU, one thread |
+| [release-gated artifact](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/release-gated-publication-artifact) | Fresh assembly, red team, report, notebook, and final regression | `uv run --frozen python run_reproduction.py` | All gates passed at `adfacf0`; published as HF revision `c09976f` | local CPU, one thread, 1.319 s |
 
 ## Reproduce
 

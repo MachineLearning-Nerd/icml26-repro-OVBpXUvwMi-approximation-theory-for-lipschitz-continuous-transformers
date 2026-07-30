@@ -1,0 +1,72 @@
+{
+  "run_id": "1783fe1d-b711-455e-b7db-4426fe01bc95",
+  "git_sha": "93baf87fa5bc1c062e83ad36604203d87ba911e4",
+  "fixed_command": "uv run --frozen python run_reproduction.py",
+  "environment": {
+    "python": "3.12.11",
+    "numpy": "2.5.1",
+    "lockfile": "uv.lock"
+  },
+  "compute": {
+    "estimated_cores": 1,
+    "selected_flavor": "local CPU",
+    "allocated_logical_cpus": 8,
+    "thread_limit": 1,
+    "runtime_seconds": 1.269537542015314
+  },
+  "proof_certificate": {
+    "proof_nodes": 25,
+    "errors": [],
+    "all_passed": true
+  },
+  "candidate_validation": {
+    "referenced_pages": 16,
+    "missing_pages": [],
+    "historical_manifest_files": 17,
+    "claim_page_errors": [],
+    "current_verification_first": true,
+    "passed": true
+  },
+  "claims": {
+    "claim_1": {
+      "verdict": "VERIFIED",
+      "confidence": "HIGH",
+      "activation_regions_exhausted": 1024,
+      "dimension": 16,
+      "max_segment_operator_norm": 1.0000000000000009,
+      "negative_control_lipschitz": 1.1
+    },
+    "claim_2": {
+      "verdict": "VERIFIED",
+      "confidence": "HIGH",
+      "dimension": 32,
+      "tokens": 512,
+      "covariance_min_eigenvalue": 1.135580506098374e-06,
+      "covariance_max_eigenvalue": 0.11796507128661951,
+      "sup_norm_squared_bound": 1.8345056015086936,
+      "negative_control_jacobian_norm": 1.1
+    },
+    "claim_3": {
+      "verdict": "VERIFIED",
+      "confidence": "HIGH",
+      "layers": 128,
+      "query_constant_product": 1.0,
+      "finite_context_constant": 3.858201434572288e+17,
+      "negative_control_composition_bound": 1.01
+    },
+    "claim_4": {
+      "verdict": "VERIFIED",
+      "confidence": "MEDIUM",
+      "finite_domain_envelope_error": 0.0,
+      "negative_control_best_affine_error_lower_bound": 0.5,
+      "remaining_risk": "Murari et al. Theorem 3.1 is imported rather than proof-assistant formalized."
+    },
+    "claim_5": {
+      "verdict": "VERIFIED",
+      "confidence": "HIGH",
+      "finite_domain_envelope_error": 0.0,
+      "negative_control_strict_precondition": false
+    }
+  },
+  "all_checks_passed": true
+}

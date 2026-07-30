@@ -1,0 +1,9 @@
+{
+  "claim_id": "claim_2",
+  "verdict": "VERIFIED",
+  "domain": "Compact Omega subset R^d, mu,nu in P(Omega), x in Omega",
+  "assumptions": ["theta=(A,eta) fixed", "0 <= eta <= 2/sup_y||Ay||_2^2"],
+  "quantifier": "Every fixed context for the query bound and every pair of context measures for fixed query",
+  "predicate": "Gamma(mu,.) is 1-Lipschitz and Gamma(.,x) has a finite W1 Lipschitz constant",
+  "failure_condition": "A valid query pair exceeds ratio one or no finite KR quotient bound exists"
+}
