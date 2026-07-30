@@ -24,7 +24,7 @@ while the fixed-context query product is `prod q_l <= 1`.
 - Negative control: insert one layer with constant `1.01`; computed composition
   bound `1.01`, rejected.
 - Fixed command: `uv run --frozen python run_reproduction.py`; evidence SHA
-  `488295b34cfd0b7e7f0ad2c1cbded67370fa4d9a`.
+  `93baf87fa5bc1c062e83ad36604203d87ba911e4`.
 
 [Contract](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/evidence/current/claim_3/claim_contract.json),
 [source audit](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/evidence/current/claim_3/source_audit.md),

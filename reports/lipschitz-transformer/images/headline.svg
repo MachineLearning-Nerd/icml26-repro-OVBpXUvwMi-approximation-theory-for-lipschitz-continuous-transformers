@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="470" viewBox="0 0 1100 470">
+  <rect width="1100" height="470" fill="#f7f8fc"/>
+  <text x="55" y="58" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#17203a">From sampled toy checks to theorem-level evidence</text>
+  <text x="55" y="91" font-family="Arial,sans-serif" font-size="17" fill="#536078">All five claims now have symbolic derivations, executable certificates, independent checks, and controls.</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="55" y="135" width="180" height="245" rx="14" fill="#ffffff" stroke="#cbd2e1"/>
+    <rect x="255" y="135" width="180" height="245" rx="14" fill="#ffffff" stroke="#cbd2e1"/>
+    <rect x="455" y="135" width="180" height="245" rx="14" fill="#ffffff" stroke="#cbd2e1"/>
+    <rect x="655" y="135" width="180" height="245" rx="14" fill="#ffffff" stroke="#cbd2e1"/>
+    <rect x="855" y="135" width="180" height="245" rx="14" fill="#ffffff" stroke="#cbd2e1"/>
+    <g font-size="20" font-weight="700" fill="#17203a" text-anchor="middle">
+      <text x="145" y="176">Claim 1</text><text x="345" y="176">Claim 2</text>
+      <text x="545" y="176">Claim 3</text><text x="745" y="176">Claim 4</text>
+      <text x="945" y="176">Claim 5</text>
+    </g>
+    <g font-size="15" fill="#7b8498" text-anchor="middle">
+      <text x="145" y="212">MLP Euler step</text><text x="345" y="212">shallow attention</text>
+      <text x="545" y="212">deep composition</text><text x="745" y="212">universality</text>
+      <text x="945" y="212">lattice density</text>
+    </g>
+    <g font-size="17" font-weight="700" fill="#b35a27" text-anchor="middle">
+      <text x="145" y="260">TOY 1/2</text><text x="345" y="260">TOY 1/2</text>
+      <text x="545" y="260">TOY 1/2</text><text x="745" y="260">TOY 1/2</text>
+      <text x="945" y="260">TOY 1/2</text>
+    </g>
+    <g font-size="24" fill="#7b8498" text-anchor="middle">
+      <text x="145" y="302">↓</text><text x="345" y="302">↓</text><text x="545" y="302">↓</text>
+      <text x="745" y="302">↓</text><text x="945" y="302">↓</text>
+    </g>
+    <g font-size="18" font-weight="700" fill="#14785c" text-anchor="middle">
+      <text x="145" y="340">VERIFIED</text><text x="345" y="340">VERIFIED</text>
+      <text x="545" y="340">VERIFIED</text><text x="745" y="340">VERIFIED</text>
+      <text x="945" y="340">VERIFIED</text>
+    </g>
+    <g font-size="13" fill="#536078" text-anchor="middle">
+      <text x="145" y="365">HIGH</text><text x="345" y="365">HIGH</text>
+      <text x="545" y="365">HIGH</text><text x="745" y="365">MEDIUM</text>
+      <text x="945" y="365">HIGH</text>
+    </g>
+  </g>
+  <text x="55" y="430" font-family="Arial,sans-serif" font-size="15" fill="#536078">Forecast only: the live score remains 5/10 until the evaluator judges the new Space revision.</text>
+</svg>

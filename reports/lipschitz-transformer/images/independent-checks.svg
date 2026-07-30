@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540">
+  <rect width="1100" height="540" fill="#f7f8fc"/>
+  <text x="55" y="55" font-family="Arial,sans-serif" font-size="29" font-weight="700" fill="#17203a">Independent checks stress the algebra beyond d=1</text>
+  <g font-family="Arial,sans-serif">
+    <text x="55" y="112" font-size="16" fill="#536078">Normalized value (the theorem threshold is 1.0)</text>
+    <line x1="340" y1="140" x2="1010" y2="140" stroke="#d6dbe7"/>
+    <line x1="340" y1="440" x2="1010" y2="440" stroke="#d6dbe7"/>
+    <line x1="1010" y1="125" x2="1010" y2="455" stroke="#b35a27" stroke-width="3" stroke-dasharray="7 6"/>
+    <text x="1010" y="480" font-size="14" text-anchor="middle" fill="#b35a27">1.0 limit</text>
+    <g font-size="16" fill="#17203a">
+      <text x="55" y="184">Claim 1: max segment norm</text>
+      <text x="55" y="254">Claim 2: max eigenvalue / beta</text>
+      <text x="55" y="324">Claim 3: query product</text>
+      <text x="55" y="394">Claims 4/5: envelope error</text>
+    </g>
+    <rect x="340" y="160" width="670" height="30" rx="6" fill="#2a8f70"/>
+    <rect x="340" y="230" width="43.1" height="30" rx="6" fill="#4f6fb5"/>
+    <rect x="340" y="300" width="670" height="30" rx="6" fill="#2a8f70"/>
+    <rect x="340" y="370" width="2" height="30" rx="1" fill="#4f6fb5"/>
+    <g font-size="15" font-weight="700" fill="#17203a">
+      <text x="990" y="183" text-anchor="end">1.0000000000000009</text>
+      <text x="395" y="253">0.0643</text>
+      <text x="990" y="323" text-anchor="end">1.0</text>
+      <text x="355" y="393">0.0</text>
+    </g>
+    <text x="55" y="515" font-size="14" fill="#536078">Scope: all 1,024 activation masks at d=16; attention covariance at d=32 with 512 tokens; 128-layer recurrence; complete four-point metric domain.</text>
+  </g>
+</svg>

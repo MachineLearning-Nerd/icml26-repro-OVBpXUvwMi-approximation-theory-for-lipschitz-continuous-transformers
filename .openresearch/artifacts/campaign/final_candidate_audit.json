@@ -1,0 +1,24 @@
+{
+  "audit": "evaluator-blind candidate traversal",
+  "candidate_basis": {
+    "judged_revision": "df0a8cc0348a130d23bce8f00c22eaa00452aa3d",
+    "assembly": "exact judged download plus release/upload_allowlist.tsv"
+  },
+  "entrypoints": [
+    "README.md",
+    "logbook.json",
+    "pages/index.md"
+  ],
+  "files_opened": 19,
+  "linked_raw_files_checked": 43,
+  "claim_pages_passed": 5,
+  "historical_files_expected": 17,
+  "historical_files_missing": 0,
+  "missing_links": 0,
+  "secret_hits": 0,
+  "conclusions_not_verified": 0,
+  "allowlisted_text_files": 75,
+  "upload_manifest_sha256": "39b33016917299d45ddf310bbf2f717d51788809d80a9cfe19efbb4d1a474fe6",
+  "candidate_tree_sha256": "f9c2980f23bbb2b3a56e59dd278d1461aba8e0480704d0bec15ef7f5b378e6c0",
+  "passed": true
+}

@@ -40,6 +40,8 @@ are handled separately.
 [proof derivation](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/evidence/current/symbolic_derivation.md),
 [verifier](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/evidence/current/claim_4/verify.py).
 
+## Limitation
+
 Remaining risk: the chain imports Murari et al., Theorem 3.1. Its source was
 audited (arXiv:2505.12003, retrieved full-text SHA
 `d99938557a22baaae6a470ce281cb850cb568c7249dded51f9a2d6a91b699131`)

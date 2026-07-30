@@ -1,6 +1,6 @@
 {
-  "run_id": "82274a00-fcc5-4707-b71e-b7e5525d5591",
-  "git_sha": "488295b34cfd0b7e7f0ad2c1cbded67370fa4d9a",
+  "run_id": "1783fe1d-b711-455e-b7db-4426fe01bc95",
+  "git_sha": "93baf87fa5bc1c062e83ad36604203d87ba911e4",
   "fixed_command": "uv run --frozen python run_reproduction.py",
   "environment": {
     "python": "3.12.11",
@@ -12,12 +12,20 @@
     "selected_flavor": "local CPU",
     "allocated_logical_cpus": 8,
     "thread_limit": 1,
-    "runtime_seconds": 1.8054140000022016
+    "runtime_seconds": 1.269537542015314
   },
   "proof_certificate": {
     "proof_nodes": 25,
     "errors": [],
     "all_passed": true
+  },
+  "candidate_validation": {
+    "referenced_pages": 16,
+    "missing_pages": [],
+    "historical_manifest_files": 17,
+    "claim_page_errors": [],
+    "current_verification_first": true,
+    "passed": true
   },
   "claims": {
     "claim_1": {

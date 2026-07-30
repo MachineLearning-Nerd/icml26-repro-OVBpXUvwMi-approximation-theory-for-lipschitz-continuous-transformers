@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="500" viewBox="0 0 1100 500">
+  <rect width="1100" height="500" fill="#f7f8fc"/>
+  <text x="55" y="55" font-family="Arial,sans-serif" font-size="29" font-weight="700" fill="#17203a">Depth preserves the query bound—not a small context constant</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="70" y="120" width="430" height="280" rx="15" fill="#ffffff" stroke="#cbd2e1"/>
+    <rect x="600" y="120" width="430" height="280" rx="15" fill="#ffffff" stroke="#cbd2e1"/>
+    <text x="285" y="164" text-anchor="middle" font-size="20" font-weight="700" fill="#17203a">Query constant at 128 layers</text>
+    <text x="815" y="164" text-anchor="middle" font-size="20" font-weight="700" fill="#17203a">Context recurrence at 128 layers</text>
+    <circle cx="285" cy="275" r="76" fill="#d9f1e8"/>
+    <text x="285" y="286" text-anchor="middle" font-size="44" font-weight="700" fill="#14785c">1.0</text>
+    <text x="285" y="370" text-anchor="middle" font-size="15" fill="#536078">exact product bound ≤ 1</text>
+    <rect x="675" y="210" width="280" height="92" rx="12" fill="#fbe9dd"/>
+    <text x="815" y="266" text-anchor="middle" font-size="30" font-weight="700" fill="#b35a27">3.858 × 10¹⁷</text>
+    <text x="815" y="340" text-anchor="middle" font-size="15" fill="#536078">finite, but allowed to depend on depth</text>
+    <text x="550" y="454" text-anchor="middle" font-size="16" fill="#17203a">This corrects the imported gloss: only query stability is depth-independent.</text>
+  </g>
+</svg>

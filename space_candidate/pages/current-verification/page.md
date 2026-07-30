@@ -24,10 +24,10 @@ uv run --frozen python run_reproduction.py
 ```
 
 - Evidence run Git SHA:
-  `488295b34cfd0b7e7f0ad2c1cbded67370fa4d9a`
+  `93baf87fa5bc1c062e83ad36604203d87ba911e4`
 - CPython 3.12.11; NumPy 2.5.1; exact `uv.lock`
 - Estimated cores: 1; local CPU; numerical libraries limited to one thread
-- Visible allocation: 8 logical CPUs; measured runtime: 1.805414 seconds
+- Visible allocation: 8 logical CPUs; measured runtime: 1.269538 seconds
 - Deterministic seeds: `0,1,2,3,5,7,11`; independent checks use `101,202`
 - Certificate: 25/25 dependency nodes, zero errors
 - Independent checker: all checks passed
@@ -35,7 +35,7 @@ uv run --frozen python run_reproduction.py
 
 Download:
 [raw run evidence](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/evidence/current/release_evidence.json),
-[proof DAG](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/evidence/current/proof_dag.json),
+[proof DAG](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/reproduction/proof_dag.json),
 [symbolic derivation](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/evidence/current/symbolic_derivation.md),
 [entrypoint](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/run_reproduction.py),
 [proof verifier](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/reproduction/proof_verifier.py),

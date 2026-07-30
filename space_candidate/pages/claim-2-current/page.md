@@ -29,7 +29,7 @@ claim.
 - Falsification audit: 1,000 admissible fixed-theta trials; max query Jacobian
   `0.9999999932787749`; no counterexample.
 - Negative control: oversized step computes Jacobian norm `1.1`.
-- Command/SHA/compute: same fixed command, SHA, and 1.805414-second one-thread
+- Command/SHA/compute: same fixed command, SHA, and 1.269538-second one-thread
   suite shown on Current verification.
 
 [Contract](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/evidence/current/claim_2/claim_contract.json),

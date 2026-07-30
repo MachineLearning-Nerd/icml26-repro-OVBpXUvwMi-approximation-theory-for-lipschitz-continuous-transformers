@@ -22,8 +22,8 @@ Continuity across the finitely many segment crossings gives the global bound.
 - Negative control: `tau=2.1/||W||^2` computes Lipschitz constant `1.1` and is
   rejected.
 - Fixed command: `uv run --frozen python run_reproduction.py`
-- SHA `488295b34cfd0b7e7f0ad2c1cbded67370fa4d9a`; seeds `101` plus campaign seeds
-- Local one-thread CPU; 8 logical CPUs visible; whole suite 1.805414 seconds.
+- SHA `93baf87fa5bc1c062e83ad36604203d87ba911e4`; seeds `101` plus campaign seeds
+- Local one-thread CPU; 8 logical CPUs visible; whole suite 1.269538 seconds.
 
 [Contract](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/evidence/current/claim_1/claim_contract.json),
 [source audit](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi/blob/main/evidence/current/claim_1/source_audit.md),

@@ -49,6 +49,40 @@ def validate_candidate() -> dict:
     readme_current = "[Current verification](#/current-verification)" in (
         candidate / "README.md"
     ).read_text()
+    red_team = (candidate / "pages/red-team/page.md").read_text()
+    red_team_complete = (
+        '"passed": true' in red_team
+        and '"missing_links": 0' in red_team
+        and '"secret_hits": 0' in red_team
+        and '"conclusions_not_verified": 0' in red_team
+    )
+
+    report = Path("reports/lipschitz-transformer/report.md")
+    report_text = report.read_text()
+    report_images = [
+        path.removeprefix("images/")
+        for path in report_text.split("](images/")[1:]
+    ]
+    report_images = [path.split(")", 1)[0] for path in report_images]
+    missing_report_images = [
+        image
+        for image in report_images
+        if not (report.parent / "images" / image).is_file()
+    ]
+
+    allowlist_lines = [
+        line
+        for line in Path("release/upload_allowlist.tsv").read_text().splitlines()
+        if line and not line.startswith("#")
+    ]
+    allowlist_destinations = [line.split("\t", 1)[0] for line in allowlist_lines]
+    allowlist_unique = len(allowlist_destinations) == len(set(allowlist_destinations))
+    generated_manifest_listed = (
+        "evidence/current/upload-manifest.sha256" in allowlist_destinations
+    )
+    notebook_present = Path(
+        "notebooks/lipschitz_transformer_reproduction.py"
+    ).is_file()
 
     return {
         "schema_version": logbook.get("schema_version"),
@@ -59,6 +93,13 @@ def validate_candidate() -> dict:
         "claim_page_errors": claim_errors,
         "current_verification_first": current_first,
         "readme_links_current_verification": readme_current,
+        "red_team_complete": red_team_complete,
+        "report_images": len(report_images),
+        "missing_report_images": missing_report_images,
+        "allowlisted_text_files": len(allowlist_destinations),
+        "allowlist_unique": allowlist_unique,
+        "generated_manifest_listed": generated_manifest_listed,
+        "notebook_present": notebook_present,
         "passed": (
             logbook.get("schema_version") == 1
             and logbook.get("space_id") == "DineshAI/OVBpXUvwMi"
@@ -67,5 +108,12 @@ def validate_candidate() -> dict:
             and not claim_errors
             and current_first
             and readme_current
+            and red_team_complete
+            and len(report_images) == 5
+            and not missing_report_images
+            and len(allowlist_destinations) == 75
+            and allowlist_unique
+            and generated_manifest_listed
+            and notebook_present
         ),
     }

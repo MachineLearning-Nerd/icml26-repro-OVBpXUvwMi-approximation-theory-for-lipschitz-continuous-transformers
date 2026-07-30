@@ -18,8 +18,8 @@ verification plus independent checks and controls. No claim is BLOCKED.
 
 ## Provenance and compute
 
-- Proof run: SHA `488295b34cfd0b7e7f0ad2c1cbded67370fa4d9a`,
-  local one-thread CPU, 8 logical CPUs visible, 1.805414 seconds.
+- Proof run: SHA `93baf87fa5bc1c062e83ad36604203d87ba911e4`,
+  local one-thread CPU, 8 logical CPUs visible, 1.269538 seconds.
 - Boundary audit: SHA `1d043ee86ed9baa8db743ad1d4d477d7ece4a949`,
   HF `cpu-upgrade`, 64 logical CPUs allocated, one-thread numerical limit,
   16 seconds provider runtime, 0.249335 seconds measured.
