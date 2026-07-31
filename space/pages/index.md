@@ -1,12 +1,13 @@
-# Repro - Lipschitz Continuous Transformers
+# Reproduction: Approximation Theory for Lipschitz Continuous Transformers
 
-The current theorem-level evidence supersedes the d=1 sampled checks.
+## Pages
 
 | Page | Purpose |
 | --- | --- |
-| [Current verification](#/current-verification) | Verdicts, exact command, strongest results, and evidence links |
-| [Independent proof reconstruction](#/proof-reconstruction) | Universal symbolic derivation; numerical checks are corroboration only |
-| [Evaluator visibility matrix](#/visibility-matrix) | Claim-by-claim discoverability audit |
-| [Release report](#/release-report) | Forecast, provenance, compute, and remaining risk |
-| [Evaluator-blind red team](#/red-team) | Files opened and findings from artifact-only review |
-| [Historical rejected baseline](#/historical-rejected-baseline) | Preserved judged d=1 evidence; not current verification |
+| [Executive summary](#/executive-summary) | Pinned result, scope, compute, and reproduction poster |
+| [Claim 1](#/claim-1-current) | Lipschitz MLP Euler layer |
+| [Claim 2](#/claim-2-current) | Shallow attention stability |
+| [Claim 3](#/claim-3-current) | Finite-depth composition |
+| [Claim 4](#/claim-4-current) | Universal approximation |
+| [Claim 5](#/claim-5-current) | Restricted Stone-Weierstrass |
+| [Conclusion](#/conclusion) | Findings, limitations, provenance, and historical evidence |

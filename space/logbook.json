@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "title": "Repro - Lipschitz Continuous Transformers",
+  "title": "Reproduction: Approximation Theory for Lipschitz Continuous Transformers",
   "emoji": "🎯",
   "space_id": "DineshAI/OVBpXUvwMi",
   "paper": "arXiv:2602.15503",
@@ -8,106 +8,56 @@
     "icml2026-repro",
     "paper-OVBpXUvwMi"
   ],
-  "updated_at": "2026-07-30T12:00:00+00:00",
+  "updated_at": "2026-07-31T00:00:00+00:00",
   "root": {
     "slug": "index",
-    "title": "Repro - Lipschitz Continuous Transformers",
+    "title": "Reproduction: Approximation Theory for Lipschitz Continuous Transformers",
     "file": "pages/index.md",
     "children": [
       {
-        "slug": "current-verification",
-        "title": "Current verification",
-        "file": "pages/current-verification/page.md",
-        "children": [
-          {
-            "slug": "claim-1-current",
-            "title": "Claim 1 — MLP Euler layer",
-            "file": "pages/claim-1-current/page.md",
-            "children": []
-          },
-          {
-            "slug": "claim-2-current",
-            "title": "Claim 2 — shallow attention",
-            "file": "pages/claim-2-current/page.md",
-            "children": []
-          },
-          {
-            "slug": "claim-3-current",
-            "title": "Claim 3 — finite-depth composition",
-            "file": "pages/claim-3-current/page.md",
-            "children": []
-          },
-          {
-            "slug": "claim-4-current",
-            "title": "Claim 4 — universal approximation",
-            "file": "pages/claim-4-current/page.md",
-            "children": []
-          },
-          {
-            "slug": "claim-5-current",
-            "title": "Claim 5 — restricted Stone-Weierstrass",
-            "file": "pages/claim-5-current/page.md",
-            "children": []
-          }
-        ]
-      },
-      {
-        "slug": "proof-reconstruction",
-        "title": "Independent proof reconstruction",
-        "file": "pages/proof-reconstruction/page.md",
+        "slug": "executive-summary",
+        "title": "Executive summary",
+        "file": "pages/executive-summary/page.md",
         "children": []
       },
       {
-        "slug": "visibility-matrix",
-        "title": "Evaluator visibility matrix",
-        "file": "pages/visibility-matrix/page.md",
+        "slug": "claim-1-current",
+        "title": "Claim 1 — MLP Euler layer",
+        "file": "pages/claim-1-current/page.md",
         "children": []
       },
       {
-        "slug": "release-report",
-        "title": "Release report",
-        "file": "pages/release-report/page.md",
+        "slug": "claim-2-current",
+        "title": "Claim 2 — shallow attention",
+        "file": "pages/claim-2-current/page.md",
         "children": []
       },
       {
-        "slug": "red-team",
-        "title": "Evaluator-blind red team",
-        "file": "pages/red-team/page.md",
+        "slug": "claim-3-current",
+        "title": "Claim 3 — finite-depth composition",
+        "file": "pages/claim-3-current/page.md",
         "children": []
       },
       {
-        "slug": "historical-rejected-baseline",
-        "title": "Historical rejected baseline",
-        "file": "pages/overview/page.md",
-        "children": [
-          {
-            "slug": "claims",
-            "title": "Historical claims",
-            "file": "pages/claims/page.md",
-            "children": []
-          },
-          {
-            "slug": "evidence",
-            "title": "Historical evidence",
-            "file": "pages/evidence/page.md",
-            "children": []
-          },
-          {
-            "slug": "conclusion",
-            "title": "Historical conclusion",
-            "file": "pages/conclusion/page.md",
-            "children": []
-          },
-          {
-            "slug": "verification-run",
-            "title": "Historical verification run",
-            "file": "pages/verification-run/page.md",
-            "children": []
-          }
-        ]
+        "slug": "claim-4-current",
+        "title": "Claim 4 — universal approximation",
+        "file": "pages/claim-4-current/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-5-current",
+        "title": "Claim 5 — restricted Stone-Weierstrass",
+        "file": "pages/claim-5-current/page.md",
+        "children": []
+      },
+      {
+        "slug": "conclusion",
+        "title": "Conclusion",
+        "file": "pages/conclusion-current/page.md",
+        "children": []
       }
     ]
   },
   "agent_view_tokens": 16000,
-  "revision": "26021503-current-verification"
+  "revision": "26021503-lean-claims-4-5"
 }

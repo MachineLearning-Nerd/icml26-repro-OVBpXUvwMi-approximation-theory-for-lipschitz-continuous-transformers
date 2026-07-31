@@ -68,12 +68,12 @@ CLAIM_META = {
     "claim_4": {
         "verdict": "VERIFIED",
         "confidence": "MEDIUM",
-        "basis": "Independent density-proof reconstruction; residual risk is reliance on the cited scalar ResNet theorem rather than a proof assistant formalization.",
+        "basis": "Lean checks the arbitrary compact-domain density deduction and the Murari density deduction from lattice/interpolation obligations; exact matrix-level Transformer realization of those obligations remains outside the formal kernel.",
     },
     "claim_5": {
         "verdict": "VERIFIED",
         "confidence": "HIGH",
-        "basis": "Independent two-cover lattice proof with strict-margin scaling.",
+        "basis": "Lean checks the arbitrary compact-space two-cover lattice proof with strict-margin scaling.",
     },
 }
 

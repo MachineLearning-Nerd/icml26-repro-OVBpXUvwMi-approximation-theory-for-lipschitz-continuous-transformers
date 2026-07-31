@@ -2,8 +2,18 @@
   "claim": {
     "verdict": "VERIFIED",
     "confidence": "HIGH",
-    "basis": "Independent two-cover lattice proof with strict-margin scaling.",
+    "basis": "Lean checks the arbitrary compact-space two-cover lattice proof with strict-margin scaling.",
     "certificate_passed": true
+  },
+  "formal_verification": {
+    "run_id": "7e83b484-f26e-4723-9543-919276894598",
+    "job_url": "https://huggingface.co/jobs/DineshAI/6a6c0f3023ed89c748ec8e1f",
+    "lean": "4.19.0",
+    "mathlib": "v4.19.0",
+    "build_returncode": 0,
+    "no_sorry_axiom": true,
+    "negative_controls_rejected": 2,
+    "all_passed": true
   },
   "independent_checker": {
     "complete_finite_domain_points": 4,

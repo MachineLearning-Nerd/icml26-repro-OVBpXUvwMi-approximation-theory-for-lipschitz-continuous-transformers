@@ -1,15 +1,15 @@
 {
   "awaiting_judge": true,
-  "current_live_judged_revision": "df0a8cc0348a130d23bce8f00c22eaa00452aa3d",
-  "current_live_score": "5/10",
+  "current_live_judged_revision": "c09976f4189cfa624d6dbb8ac4ef96d14eb113e3",
+  "current_live_score": "8/10",
   "github_mirror_status": "published",
-  "hf_revision": "c09976f4189cfa624d6dbb8ac4ef96d14eb113e3",
+  "hf_revision": "81674f553e4492b5767374ae6c3573b8658b957f",
   "hf_space_id": "DineshAI/OVBpXUvwMi",
-  "hf_upload_path_count": 75,
+  "hf_upload_path_count": 48,
   "independent_download_verified": true,
-  "verified_manifest_entry_count": 74,
-  "upload_manifest_sha256": "39b33016917299d45ddf310bbf2f717d51788809d80a9cfe19efbb4d1a474fe6",
-  "published_at": "2026-07-30T17:14:12Z",
-  "winning_branch": "orx/release-gated-publication-artifact",
-  "winning_git_sha": "adfacf0bf29bcb8027fea29e38835604a0db35c0"
+  "verified_manifest_entry_count": 47,
+  "upload_manifest_sha256": "13fa95c20ae06710cf0d6f2d77f5eef9fa197e035b018cdd04afe32ef52b65a6",
+  "published_at": "2026-07-31T03:25:19Z",
+  "winning_branch": "orx/evaluator-visible-claims-4-and-5-formal-evidence",
+  "winning_git_sha": "ab99c63af872806bc99af28b049db3ac426af4fe"
 }

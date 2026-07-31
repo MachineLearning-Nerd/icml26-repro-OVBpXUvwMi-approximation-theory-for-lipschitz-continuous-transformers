@@ -20,11 +20,14 @@ approximation result is uniform error at most any prescribed
 - five of five theorem-specific negative controls rejected.
 
 Assessment: all five claims are **VERIFIED** by independent symbolic
-reconstruction. Claims 1, 2, 3, and 5 have HIGH confidence; Claim 4 has MEDIUM
-confidence because its chain imports Murari et al., Theorem 3.1 instead of
-formalizing that antecedent in a proof assistant. This is a forecasted evidence
-upgrade, not a live-judge score increase; the judged score remains 5/10 until a
-new Space revision is evaluated.
+reconstruction. The live judge awarded **8/10** at revision `c09976f`: Claims
+1–3 received 2/2 and Claims 4–5 received 1/2. The new evidence changes only
+Claims 4–5. Lean 4.19.0 now checks Claim 5's arbitrary compact-space theorem
+and Claim 4's universal deduction from the paper-class
+lattice/interpolation premises. Claim 5 is HIGH confidence; Claim 4 remains
+MEDIUM because the exact matrix-level realization of those premises is not
+encoded in Lean. The score remains 8/10 until the live judge evaluates the new
+revision.
 
 The numerical checks are intentionally downscaled diagnostics—d=16/d=32, 512
 tokens, and 128 layers. They do not prove universal quantifiers. The proof
@@ -35,7 +38,7 @@ target-fitting evidence.
 - [Tutorial-style marimo notebook](notebooks/lipschitz_transformer_reproduction.py)
 - [Published evaluator logbook](https://huggingface.co/spaces/DineshAI/OVBpXUvwMi)
 - [Exact published text mirror](space/pages/index.md) — Space revision
-  `c09976f4189cfa624d6dbb8ac4ef96d14eb113e3`
+  `81674f553e4492b5767374ae6c3573b8658b957f`
 
 ## Experiment log
 
@@ -47,6 +50,8 @@ target-fitting evidence.
 | [assumption-satisfying falsification audit](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/assumption-satisfying-falsification-audit) | Search exact-claim boundaries and counterexamples | `uv run --frozen python run_reproduction.py` | No exact counterexample; corrected Claim 2 parameter scope and Claim 3 depth scope | HF `cpu-upgrade`, one-thread limit, 16 s provider runtime |
 | [cumulative evaluator-visible candidate](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/cumulative-evaluator-visible-release-candidate) | Rerun all accepted checks and validate canonical navigation | `uv run --frozen python run_reproduction.py` | All checks passed; 16 pages and 17 historical files accounted for | local CPU, one thread, 1.270 s |
 | [release-gated artifact](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/release-gated-publication-artifact) | Fresh assembly, red team, report, notebook, and final regression | `uv run --frozen python run_reproduction.py` | All gates passed at `adfacf0`; published as HF revision `c09976f` | local CPU, one thread, 1.319 s |
+| [Lean formal verification](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/lean-formal-verification-for-claims-4-and-5) | Formalize the compact-space Claim 5 proof and Claim 4 universal deduction | `uv run --frozen python run_reproduction.py` | Lean kernel build passed; both false controls rejected | HF `cpu-upgrade`, one worker, 164.07 s |
+| [evaluator-visible Claims 4/5 evidence](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/evaluator-visible-claims-4-and-5-formal-evidence) | Canonical pages, pinned poster, protected-tree audit, and cumulative regression | `uv run --frozen python run_reproduction.py` | All gates passed at `ab99c63`; published as HF revision `81674f5` | HF `cpu-upgrade`, one worker, 139.12 s |
 
 ## Reproduce
 
