@@ -28,14 +28,14 @@ theorem targetRelativeLatticeApproximation
   swap
   · exact
       ⟨nL.some, nL.choose_spec,
-        (dist_lt_iff ε_pos).mpr fun x => False.elim (nX ⟨x⟩)⟩
+        (ContinuousMap.dist_lt_iff ε_pos).mpr fun x => False.elim (nX ⟨x⟩)⟩
   choose g hg g_at_x g_at_y using interpolate
   let U : X → X → Set X := fun x y => {z | target z - ε < g x y z}
   have U_nhds_y : ∀ x y, U x y ∈ 𝓝 y := by
     intro x y
     refine IsOpen.mem_nhds ?_ ?_
     · apply isOpen_lt <;> fun_prop
-    · rw [Set.mem_ofPred_eq, g_at_y]
+    · rw [Set.mem_setOf_eq, g_at_y]
       exact sub_lt_self _ ε_pos
   let ys : X → Finset X :=
     fun x => (CompactSpace.elim_nhds_subcover (U x) (U_nhds_y x)).choose
@@ -61,7 +61,7 @@ theorem targetRelativeLatticeApproximation
     intro x
     refine IsOpen.mem_nhds ?_ ?_
     · apply isOpen_lt <;> fun_prop
-    · dsimp only [W, Set.mem_ofPred_eq]
+    · dsimp only [W, Set.mem_setOf_eq]
       rw [upper_at_x]
       exact lt_add_of_pos_right _ ε_pos
   let xs : Finset X := (CompactSpace.elim_nhds_subcover W W_nhds).choose
@@ -73,7 +73,7 @@ theorem targetRelativeLatticeApproximation
     ⟨xs.inf' xs_nonempty fun x => (upper x : C(X, ℝ)),
       Finset.inf'_mem _ inf_mem _ _ _ fun x _ => (upper x).2⟩
   refine ⟨approximant.1, approximant.2, ?_⟩
-  rw [dist_lt_iff ε_pos]
+  rw [ContinuousMap.dist_lt_iff ε_pos]
   intro z
   rw [show ∀ a b δ : ℝ, dist a b < δ ↔ a < b + δ ∧ b - δ < a by
     intros
