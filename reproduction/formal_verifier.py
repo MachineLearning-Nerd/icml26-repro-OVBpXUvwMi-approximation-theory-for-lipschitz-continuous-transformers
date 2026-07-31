@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import os
 import platform
+import re
 import shutil
 import subprocess
 import tarfile
@@ -87,8 +88,8 @@ def verify_formalization(root: Path = Path(".")) -> dict:
     source_text = "\n".join(path.read_text() for path in sources)
     forbidden = [
         token
-        for token in ("sorry", "admit", "axiom ")
-        if token in source_text
+        for token in ("sorry", "admit", "axiom")
+        if re.search(rf"(?m)^\s*{token}\b|\b{token}\b", source_text)
     ]
 
     cache_dir = root / ".formal-cache"
@@ -142,22 +143,23 @@ def verify_formalization(root: Path = Path(".")) -> dict:
         }
     build = run([str(lake), "build"], env)
     lean_version = run([str(elan.parent / "lean"), "--version"], env, timeout=60)
-    negative = run(
-        [
-            str(lake),
-            "env",
-            "lean",
-            "formal_negative_controls/StrictMarginFails.lean",
-        ],
-        env,
-        timeout=300,
-    )
+    negative_controls = {}
+    for control in (
+        "formal_negative_controls/StrictMarginFails.lean",
+        "formal_negative_controls/NegativeCoefficientFails.lean",
+    ):
+        negative_controls[control] = run(
+            [str(lake), "env", "lean", control],
+            env,
+            timeout=300,
+        )
 
     build_output = build["stdout"] + build["stderr"]
     no_unsafe_axioms = "sorryAx" not in build_output
-    negative_rejected = (
-        negative["returncode"] != 0
-        and "no goals to be solved" not in negative["stderr"]
+    negative_rejected = all(
+        result["returncode"] != 0
+        and "no goals to be solved" not in result["stderr"]
+        for result in negative_controls.values()
     )
     passed = (
         not forbidden
@@ -178,7 +180,7 @@ def verify_formalization(root: Path = Path(".")) -> dict:
         "lake_update": update,
         "mathlib_cache": cache,
         "build": build,
-        "negative_control": negative,
+        "negative_controls": negative_controls,
         "negative_control_rejected": negative_rejected,
         "no_sorry_axiom": no_unsafe_axioms,
         "runtime_seconds": time.perf_counter() - started,
