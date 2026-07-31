@@ -23,6 +23,7 @@ import numpy as np
 from reproduction.independent_checker import run_independent_checks
 from reproduction.negative_controls import run_negative_controls
 from reproduction.candidate_validator import validate_candidate
+from reproduction.formal_verifier import verify_formalization
 from reproduction.proof_verifier import verify_certificate
 
 
@@ -178,6 +179,7 @@ def main() -> int:
     started = time.perf_counter()
     baseline = run_baseline()
     proof = verify_certificate(Path("reproduction/proof_dag.json"))
+    formal = verify_formalization()
     independent = run_independent_checks()
     controls = run_negative_controls()
     candidate = validate_candidate()
@@ -197,6 +199,7 @@ def main() -> int:
         },
         "baseline_regression": baseline,
         "proof_certificate": proof,
+        "formal_verification": formal,
         "independent_checker": independent,
         "negative_controls": controls,
         "candidate_validation": candidate,
@@ -210,6 +213,7 @@ def main() -> int:
     result["all_checks_passed"] = (
         baseline["all_checks_passed"]
         and proof["all_passed"]
+        and formal["all_passed"]
         and independent["all_passed"]
         and controls["all_rejected"]
         and candidate["passed"]
