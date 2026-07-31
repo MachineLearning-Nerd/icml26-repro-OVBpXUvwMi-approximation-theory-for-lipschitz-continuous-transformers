@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import os
 import platform
+import shutil
 import subprocess
 import tarfile
 import time
@@ -97,6 +98,28 @@ def verify_formalization(root: Path = Path(".")) -> dict:
     env["PATH"] = f"{elan.parent}:{env.get('PATH', '')}"
     env["LAKE_JOBS"] = "1"
 
+    system_setup = None
+    if shutil.which("curl", path=env["PATH"]) is None:
+        system_setup = run(
+            [
+                "apt-get",
+                "install",
+                "-y",
+                "--no-install-recommends",
+                "curl",
+            ],
+            env,
+            timeout=300,
+        )
+        if system_setup["returncode"] != 0:
+            return {
+                "checker": "Lean 4 kernel",
+                "stage": "system prerequisite",
+                "forbidden_tokens": forbidden,
+                "system_setup": system_setup,
+                "all_passed": False,
+            }
+
     lake = elan.parent / "lake"
     update = run([str(lake), "update"], env)
     if update["returncode"] != 0:
@@ -147,6 +170,7 @@ def verify_formalization(root: Path = Path(".")) -> dict:
         "platform": platform.platform(),
         "lean_toolchain": (root / "lean-toolchain").read_text().strip(),
         "mathlib_revision": "v4.19.0",
+        "system_setup": system_setup,
         "formal_sources": [str(path) for path in sources],
         "forbidden_tokens": forbidden,
         "standard_kernel_axioms_allowed": sorted(STANDARD_AXIOMS),
