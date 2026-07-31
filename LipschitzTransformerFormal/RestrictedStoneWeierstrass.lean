@@ -104,17 +104,29 @@ theorem existsStrictScaleNear
   let ρ : ℝ := 1 - t
   have ρ_pos : 0 < ρ := by dsimp [ρ]; linarith
   have ρ_lt_one : ρ < 1 := by dsimp [ρ]; linarith
+  have t_norm_lt : t * ‖target‖ < ε := by
+    dsimp [t]
+    rw [div_mul_eq_mul_div]
+    apply (div_lt_iff₀ denominator_pos).2
+    dsimp [denominator]
+    nlinarith [norm_nonneg target]
   refine ⟨ρ, ρ_pos, ρ_lt_one, ?_⟩
+  apply (ContinuousMap.dist_lt_iff ε_pos).2
+  intro x
+  have apply_norm : |target x| ≤ ‖target‖ := by
+    simpa [Real.norm_eq_abs] using target.norm_coe_le_norm x
   calc
-    dist (ρ • target) target = ‖ρ • target - target‖ := dist_eq_norm _ _
-    _ = ‖(ρ - 1) • target‖ := by rw [sub_smul, one_smul]
-    _ = |ρ - 1| * ‖target‖ := by rw [norm_smul, Real.norm_eq_abs]
-    _ = t * ‖target‖ := by simp [ρ, abs_of_pos t_pos]
-    _ < ε := by
-      rw [t, div_mul_eq_mul_div]
-      apply (div_lt_iff₀ denominator_pos).2
-      dsimp [denominator]
-      nlinarith [norm_nonneg target]
+    dist ((ρ • target) x) (target x) =
+        |(ρ - 1) * target x| := by
+          rw [Real.dist_eq, ContinuousMap.smul_apply, smul_eq_mul]
+          congr 1
+          ring
+    _ = t * |target x| := by
+      rw [abs_mul]
+      simp [ρ, abs_of_pos t_pos]
+    _ ≤ t * ‖target‖ :=
+      mul_le_mul_of_nonneg_left apply_norm t_pos.le
+    _ < ε := t_norm_lt
 
 /--
 Restricted lattice density once every strict scaling of the target admits
@@ -156,8 +168,8 @@ theorem strictGapOfScale
     {ρ : ℝ} (ρ_pos : 0 < ρ) (ρ_lt_one : ρ < 1)
     {x y : X} (xy_ne : x ≠ y) :
     |(ρ • target) x - (ρ • target) y| < budget x y := by
-  rw [ContinuousMap.smul_apply, ContinuousMap.smul_apply, ← mul_sub,
-    abs_mul, abs_of_pos ρ_pos]
+  rw [ContinuousMap.smul_apply, ContinuousMap.smul_apply, smul_eq_mul,
+    smul_eq_mul, ← mul_sub, abs_mul, abs_of_pos ρ_pos]
   calc
     ρ * |target x - target y| ≤ ρ * budget x y :=
       mul_le_mul_of_nonneg_left (target_lipschitz x y) ρ_pos.le
@@ -192,10 +204,11 @@ theorem restrictedStoneWeierstrass
   by_cases xy : x = y
   · subst y
     obtain ⟨z, xz⟩ := exists_ne x
+    have x_ne_z : x ≠ z := Ne.symm xz
     obtain ⟨g, g_mem, g_at_x, _⟩ :=
-      strict_interpolate x z xz ((ρ • target) x) ((ρ • target) z)
+      strict_interpolate x z x_ne_z ((ρ • target) x) ((ρ • target) z)
         (strictGapOfScale budget budget_pos target target_lipschitz
-          ρ_pos ρ_lt_one xz)
+          ρ_pos ρ_lt_one x_ne_z)
     exact ⟨g, g_mem, g_at_x, g_at_x⟩
   · exact
       strict_interpolate x y xy ((ρ • target) x) ((ρ • target) y)
@@ -246,7 +259,7 @@ theorem restrictedStoneWeierstrassProduct
     {ε : ℝ} (ε_pos : 0 < ε) :
     ∃ g ∈ L, dist g target < ε :=
   restrictedStoneWeierstrass (productBudget C)
-    (fun p q => productBudget_pos C_pos) L nL inf_mem sup_mem
+    (fun _ _ h => productBudget_pos C_pos h) L nL inf_mem sup_mem
     strict_interpolate target target_lipschitz ε_pos
 
 #print axioms targetRelativeLatticeApproximation
