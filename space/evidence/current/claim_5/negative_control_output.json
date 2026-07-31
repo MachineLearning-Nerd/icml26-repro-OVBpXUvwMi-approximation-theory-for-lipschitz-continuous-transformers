@@ -1,0 +1,5 @@
+{
+  "premise_changed": "unscaled target saturates the metric while separation only guarantees strict inequality",
+  "strict_precondition_holds": false,
+  "rejected": true
+}

@@ -1,0 +1,9 @@
+{
+  "claim_id": "claim_1",
+  "verdict": "VERIFIED",
+  "domain": "All d,k in N, W in R^(kxd), b in R^k, x in R^d",
+  "assumptions": ["sigma=ReLU", "0 <= tau <= 2/||W||_2^2"],
+  "quantifier": "For every admissible parameter tuple and every pair x,x'",
+  "predicate": "F is the explicit Euler step for -grad g and ||F(x)-F(x')||_2 <= ||x-x'||_2",
+  "failure_condition": "Any admissible activation segment with Jacobian operator norm greater than one"
+}

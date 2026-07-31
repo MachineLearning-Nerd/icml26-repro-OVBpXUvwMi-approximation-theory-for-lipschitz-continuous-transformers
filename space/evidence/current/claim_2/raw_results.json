@@ -1,0 +1,16 @@
+{
+  "claim": {
+    "verdict": "VERIFIED",
+    "confidence": "HIGH",
+    "basis": "Covariance Hessian, cocoercivity, and an explicit KR quotient bound.",
+    "certificate_passed": true
+  },
+  "independent_checker": {
+    "dimension": 32,
+    "tokens": 512,
+    "covariance_min_eigenvalue": 1.135580506098374e-06,
+    "covariance_max_eigenvalue": 0.11796507128661951,
+    "sup_norm_squared_bound": 1.8345056015086936,
+    "passed": true
+  }
+}

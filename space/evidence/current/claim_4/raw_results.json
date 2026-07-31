@@ -1,0 +1,16 @@
+{
+  "claim": {
+    "verdict": "VERIFIED",
+    "confidence": "MEDIUM",
+    "basis": "Independent density-proof reconstruction; residual risk is reliance on the cited scalar ResNet theorem rather than a proof assistant formalization.",
+    "certificate_passed": true
+  },
+  "independent_checker": {
+    "complete_finite_domain_points": 4,
+    "target_lipschitz": true,
+    "lattice_envelope_uniform_error": 0.0,
+    "dirac_w1": 1.2884098726725126,
+    "kr_witness_gap": 1.2884098726725126,
+    "passed": true
+  }
+}

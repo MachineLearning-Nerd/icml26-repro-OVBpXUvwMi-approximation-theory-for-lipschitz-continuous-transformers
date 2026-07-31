@@ -1,0 +1,9 @@
+{
+  "claim_id": "claim_4",
+  "verdict": "VERIFIED",
+  "domain": "X=P(Omega) x Omega for compact Omega subset R^d",
+  "assumptions": ["C>0", "d in N", "epsilon in (0,1)", "Lambda* in C_(1,C)"],
+  "quantifier": "For every admissible target and epsilon",
+  "predicate": "There exists Lambda in G_C with uniform error at most epsilon",
+  "failure_condition": "A missing lattice, separation, KR, scalar-ResNet, or compactness premise"
+}
