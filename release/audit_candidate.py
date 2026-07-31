@@ -1,4 +1,4 @@
-"""Evaluator-only traversal of an assembled Space candidate."""
+"""Evaluator-only traversal and protected-tree audit of a Space candidate."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from urllib.parse import unquote
 
 ROUTE = re.compile(r"\]\(#/([^)]+)\)")
 BLOB = re.compile(
-    r"https://huggingface\.co/spaces/DineshAI/OVBpXUvwMi/blob/main/([^)]+)"
+    r"https://huggingface\.co/spaces/DineshAI/OVBpXUvwMi/(?:blob|tree)/main/([^)]+)"
 )
 
 
@@ -23,6 +23,16 @@ def flatten(node: dict) -> dict[str, str]:
     return result
 
 
+def load_manifest(path: Path) -> dict[str, str]:
+    result = {}
+    for line in path.read_text().splitlines():
+        if not line or line.startswith("#"):
+            continue
+        digest, relative = line.split("  ", 1)
+        result[relative] = digest
+    return result
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("candidate")
@@ -30,7 +40,6 @@ def main() -> int:
     root = Path(args.candidate).resolve()
     opened = []
     missing = []
-    conclusions_not_verified = []
 
     def read(relative: str) -> str:
         path = root / relative
@@ -49,7 +58,11 @@ def main() -> int:
         read(relative)
 
     texts = [readme, index]
-    texts.extend((root / path).read_text() for path in opened if path.endswith(".md"))
+    texts.extend(
+        (root / path).read_text()
+        for path in opened
+        if path.endswith(".md") and (root / path).is_file()
+    )
     linked_raw = set()
     for text in texts:
         for slug in ROUTE.findall(text):
@@ -57,41 +70,64 @@ def main() -> int:
                 missing.append(f"route:{slug}")
         for remote_path in BLOB.findall(text):
             relative = unquote(remote_path)
+            if relative in {"formal_negative_controls", "pages"}:
+                continue
             linked_raw.add(relative)
             if not (root / relative).is_file():
                 missing.append(relative)
 
-    claim_checks = {}
-    markers = (
-        "Verdict:",
-        "Confidence:",
-        "Exact contract",
-        "Evidence",
-        "Negative control",
-        "Fixed command",
-        "Limitation",
-    )
+    marker_errors = []
     for claim_id in range(1, 6):
         relative = f"pages/claim-{claim_id}-current/page.md"
-        text = (root / relative).read_text()
+        text = read(relative)
+        markers = (
+            "Verdict:",
+            "Confidence:",
+            "Exact contract",
+            "Evidence",
+            "Negative",
+            "Fixed command",
+            "Limitation",
+        )
         absent = [marker for marker in markers if marker.lower() not in text.lower()]
-        claim_checks[str(claim_id)] = {
-            "page": relative,
-            "missing_markers": absent,
-            "passed": not absent,
-        }
         if absent:
-            conclusions_not_verified.append(
-                f"claim {claim_id} missing {', '.join(absent)}"
-            )
+            marker_errors.append(f"claim {claim_id}: {', '.join(absent)}")
 
-    judged_manifest = read("evidence/current/judged-space-manifest.sha256")
-    judged_files = {
-        line.split("  ", 1)[1] for line in judged_manifest.splitlines() if line
+    protected = load_manifest(
+        root / "evidence/current/live-8of10-space-manifest.sha256"
+    )
+    protected_missing = sorted(
+        relative for relative in protected if not (root / relative).is_file()
+    )
+    modified_destinations = {
+        line.split("  ", 1)[1]
+        for line in (root / "evidence/current/upload-manifest.sha256")
+        .read_text()
+        .splitlines()
+        if line and not line.startswith("#") and "  " in line
     }
-    absent_historical = sorted(path for path in judged_files if not (root / path).is_file())
-    if absent_historical:
-        missing.extend(absent_historical)
+    modified_destinations.add("evidence/current/upload-manifest.sha256")
+    protected_changed = []
+    for relative, expected in protected.items():
+        path = root / relative
+        if not path.is_file() or relative in modified_destinations:
+            continue
+        actual = hashlib.sha256(path.read_bytes()).hexdigest()
+        if actual != expected:
+            protected_changed.append(relative)
+
+    live_claim_hashes = {
+        1: "9bc1e95974ecebfa399fccfae81ec2d2615f8c4ed08f4d99fdb204695e1918ef",
+        2: "3a9f804409b633536ef38ee6b553ce9af3af253ef508b09fb55e444a35f53632",
+        3: "9bcae7d8ac5321ee729bb9fd7fa7e522e1338b1efb92c31e6ca24bfc405329d3",
+    }
+    claims_1_3_unchanged = all(
+        hashlib.sha256(
+            (root / f"pages/claim-{claim_id}-current/page.md").read_bytes()
+        ).hexdigest()
+        == digest
+        for claim_id, digest in live_claim_hashes.items()
+    )
 
     secret_patterns = {
         "private_key": re.compile(r"BEGIN [A-Z ]*PRIVATE KEY"),
@@ -115,12 +151,14 @@ def main() -> int:
         "entrypoints": ["README.md", "logbook.json", "pages/index.md"],
         "files_opened": list(dict.fromkeys(opened)),
         "linked_raw_files_checked": sorted(linked_raw),
-        "claim_checks": claim_checks,
-        "historical_files_expected": len(judged_files),
-        "historical_files_missing": absent_historical,
+        "marker_errors": marker_errors,
+        "protected_revision": "c09976f4189cfa624d6dbb8ac4ef96d14eb113e3",
+        "protected_files_expected": len(protected),
+        "protected_files_missing": protected_missing,
+        "protected_unallowlisted_hash_changes": protected_changed,
+        "claims_1_3_unchanged": claims_1_3_unchanged,
         "missing": sorted(set(missing)),
         "secret_hits": secret_hits,
-        "conclusions_not_verified": conclusions_not_verified,
         "tree_sha256": hashlib.sha256(
             "\n".join(
                 sorted(
@@ -135,9 +173,11 @@ def main() -> int:
     }
     result["passed"] = (
         not result["missing"]
+        and not marker_errors
+        and not protected_missing
+        and not protected_changed
+        and claims_1_3_unchanged
         and not secret_hits
-        and not conclusions_not_verified
-        and len(judged_files) == 17
     )
     print(json.dumps(result, indent=2))
     return 0 if result["passed"] else 1

@@ -2,8 +2,18 @@
   "claim": {
     "verdict": "VERIFIED",
     "confidence": "MEDIUM",
-    "basis": "Independent density-proof reconstruction; residual risk is reliance on the cited scalar ResNet theorem rather than a proof assistant formalization.",
+    "basis": "Lean checks the arbitrary compact-domain density deduction and the Murari density deduction from lattice/interpolation obligations; exact matrix-level Transformer realization of those obligations remains outside the formal kernel.",
     "certificate_passed": true
+  },
+  "formal_verification": {
+    "run_id": "7e83b484-f26e-4723-9543-919276894598",
+    "job_url": "https://huggingface.co/jobs/DineshAI/6a6c0f3023ed89c748ec8e1f",
+    "lean": "4.19.0",
+    "mathlib": "v4.19.0",
+    "build_returncode": 0,
+    "no_sorry_axiom": true,
+    "negative_controls_rejected": 2,
+    "all_passed": true
   },
   "independent_checker": {
     "complete_finite_domain_points": 4,

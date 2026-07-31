@@ -10,3 +10,8 @@ The control omits scaling for a metric-saturating target, so the strict
 precondition is false and the proof kernel rejects the route.
 
 Exact command: `uv run --frozen python run_reproduction.py`.
+
+Lean 4.19.0 with mathlib v4.19.0 compiles the theorem and prints only the
+standard axioms `propext`, `Classical.choice`, and `Quot.sound`. Two deliberately
+false theorems are rejected. Formal run:
+`https://huggingface.co/jobs/DineshAI/6a6c0f3023ed89c748ec8e1f`.

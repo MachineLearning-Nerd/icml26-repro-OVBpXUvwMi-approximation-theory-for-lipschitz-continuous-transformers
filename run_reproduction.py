@@ -205,8 +205,14 @@ def main() -> int:
         "candidate_validation": candidate,
         "compute": {
             "estimated_cores": 1,
-            "selected_flavor": "local CPU",
+            "selected_flavor": "Hugging Face cpu-upgrade",
             "allocated_logical_cpus": os.cpu_count(),
+            "affinity_cpus": (
+                len(os.sched_getaffinity(0))
+                if hasattr(os, "sched_getaffinity")
+                else None
+            ),
+            "enforced_workers": 1,
             "runtime_seconds": time.perf_counter() - started,
         },
     }

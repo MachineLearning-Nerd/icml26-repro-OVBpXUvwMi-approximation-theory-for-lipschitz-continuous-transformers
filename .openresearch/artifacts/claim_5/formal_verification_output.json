@@ -1,0 +1,46 @@
+{
+  "claim_id": "claim_5",
+  "verdict": "VERIFIED",
+  "confidence": "HIGH",
+  "run_id": "7e83b484-f26e-4723-9543-919276894598",
+  "job_url": "https://huggingface.co/jobs/DineshAI/6a6c0f3023ed89c748ec8e1f",
+  "git_sha": "3820f7a5601f0d4e52d1936ce045303796519f8d",
+  "fixed_command": "uv run --frozen python run_reproduction.py",
+  "compute": {
+    "estimated_active_cores": 1,
+    "selected_flavor": "cpu-upgrade",
+    "allocated_logical_cpus": 64,
+    "enforced_workers": 1,
+    "runtime_seconds": 164.06756182201207
+  },
+  "kernel": {
+    "lean": "4.19.0",
+    "mathlib_tag": "v4.19.0",
+    "mathlib_commit": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+    "build_returncode": 0,
+    "no_sorry_axiom": true,
+    "forbidden_tokens": [],
+    "axioms": ["Classical.choice", "Quot.sound", "propext"]
+  },
+  "theorems_checked": [
+    "targetRelativeLatticeApproximation",
+    "existsStrictScaleNear",
+    "restrictedLatticeApproximationOfScaledInterpolation",
+    "strictGapOfScale",
+    "restrictedStoneWeierstrass",
+    "productBudget_pos",
+    "restrictedStoneWeierstrassProduct"
+  ],
+  "negative_controls": {
+    "StrictMarginFails.lean": {
+      "returncode": 1,
+      "result": "unsolved goal: False"
+    },
+    "NegativeCoefficientFails.lean": {
+      "returncode": 1,
+      "result": "unsolved goal: False"
+    }
+  },
+  "all_passed": true,
+  "remaining_risk": "The theorem is existential: compactness supplies finite subcovers without a constructive size or approximation rate."
+}
