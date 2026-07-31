@@ -85,6 +85,173 @@ theorem targetRelativeLatticeApproximation
     intro x _
     exact lower_bound x z
 
+/-- Every continuous target has a strict positive scaling arbitrarily close in
+uniform distance.  This is the strict-margin device in Lemma 9. -/
+theorem existsStrictScaleNear
+    {X : Type*} [TopologicalSpace X] [CompactSpace X]
+    (target : C(X, ℝ)) {ε : ℝ} (ε_pos : 0 < ε) :
+    ∃ ρ : ℝ, 0 < ρ ∧ ρ < 1 ∧ dist (ρ • target) target < ε := by
+  let denominator : ℝ := 2 * (ε + ‖target‖ + 1)
+  have denominator_pos : 0 < denominator := by
+    dsimp [denominator]
+    positivity
+  let t : ℝ := ε / denominator
+  have t_pos : 0 < t := div_pos ε_pos denominator_pos
+  have t_lt_one : t < 1 := by
+    apply (div_lt_one denominator_pos).2
+    dsimp [denominator]
+    nlinarith [norm_nonneg target]
+  let ρ : ℝ := 1 - t
+  have ρ_pos : 0 < ρ := by dsimp [ρ]; linarith
+  have ρ_lt_one : ρ < 1 := by dsimp [ρ]; linarith
+  refine ⟨ρ, ρ_pos, ρ_lt_one, ?_⟩
+  calc
+    dist (ρ • target) target = ‖ρ • target - target‖ := dist_eq_norm _ _
+    _ = ‖(ρ - 1) • target‖ := by rw [sub_smul, one_smul]
+    _ = |ρ - 1| * ‖target‖ := by rw [norm_smul, Real.norm_eq_abs]
+    _ = t * ‖target‖ := by simp [ρ, abs_of_pos t_pos]
+    _ < ε := by
+      rw [t, div_mul_eq_mul_div]
+      apply (div_lt_iff₀ denominator_pos).2
+      dsimp [denominator]
+      nlinarith [norm_nonneg target]
+
+/--
+Restricted lattice density once every strict scaling of the target admits
+two-point interpolants.  Both quantifiers are universal: no finite sample or
+chosen basis appears.
+-/
+theorem restrictedLatticeApproximationOfScaledInterpolation
+    {X : Type*} [TopologicalSpace X] [CompactSpace X]
+    (L : Set C(X, ℝ)) (nL : L.Nonempty)
+    (inf_mem : ∀ f ∈ L, ∀ g ∈ L, f ⊓ g ∈ L)
+    (sup_mem : ∀ f ∈ L, ∀ g ∈ L, f ⊔ g ∈ L)
+    (target : C(X, ℝ))
+    (scaled_interpolate :
+      ∀ (ρ : ℝ), 0 < ρ → ρ < 1 → ∀ x y : X,
+        ∃ g ∈ L, g x = (ρ • target) x ∧ g y = (ρ • target) y)
+    {ε : ℝ} (ε_pos : 0 < ε) :
+    ∃ g ∈ L, dist g target < ε := by
+  have half_pos : 0 < ε / 2 := by positivity
+  obtain ⟨ρ, ρ_pos, ρ_lt_one, scale_close⟩ :=
+    existsStrictScaleNear target half_pos
+  obtain ⟨g, g_mem, g_close⟩ :=
+    targetRelativeLatticeApproximation L nL inf_mem sup_mem (ρ • target)
+      (scaled_interpolate ρ ρ_pos ρ_lt_one) half_pos
+  refine ⟨g, g_mem, ?_⟩
+  calc
+    dist g target ≤ dist g (ρ • target) + dist (ρ • target) target :=
+      dist_triangle _ _ _
+    _ < ε := by linarith
+
+/-- Strict scaling turns a non-strict budget-Lipschitz inequality into a
+strict one at every pair of distinct points. -/
+theorem strictGapOfScale
+    {X : Type*} [TopologicalSpace X]
+    (budget : X → X → ℝ)
+    (budget_pos : ∀ x y, x ≠ y → 0 < budget x y)
+    (target : C(X, ℝ))
+    (target_lipschitz :
+      ∀ x y, |target x - target y| ≤ budget x y)
+    {ρ : ℝ} (ρ_pos : 0 < ρ) (ρ_lt_one : ρ < 1)
+    {x y : X} (xy_ne : x ≠ y) :
+    |(ρ • target) x - (ρ • target) y| < budget x y := by
+  rw [ContinuousMap.smul_apply, ContinuousMap.smul_apply, ← mul_sub,
+    abs_mul, abs_of_pos ρ_pos]
+  calc
+    ρ * |target x - target y| ≤ ρ * budget x y :=
+      mul_le_mul_of_nonneg_left (target_lipschitz x y) ρ_pos.le
+    _ < 1 * budget x y :=
+      mul_lt_mul_of_pos_right ρ_lt_one (budget_pos x y xy_ne)
+    _ = budget x y := one_mul _
+
+/--
+The exact restricted Stone--Weierstrass contract used by Lemma 9, expressed
+for an arbitrary positive pair budget.  The product Wasserstein/query budget
+is instantiated below.
+-/
+theorem restrictedStoneWeierstrass
+    {X : Type*} [TopologicalSpace X] [CompactSpace X] [Nontrivial X]
+    (budget : X → X → ℝ)
+    (budget_pos : ∀ x y, x ≠ y → 0 < budget x y)
+    (L : Set C(X, ℝ)) (nL : L.Nonempty)
+    (inf_mem : ∀ f ∈ L, ∀ g ∈ L, f ⊓ g ∈ L)
+    (sup_mem : ∀ f ∈ L, ∀ g ∈ L, f ⊔ g ∈ L)
+    (strict_interpolate :
+      ∀ x y : X, x ≠ y → ∀ a b : ℝ, |a - b| < budget x y →
+        ∃ g ∈ L, g x = a ∧ g y = b)
+    (target : C(X, ℝ))
+    (target_lipschitz :
+      ∀ x y, |target x - target y| ≤ budget x y)
+    {ε : ℝ} (ε_pos : 0 < ε) :
+    ∃ g ∈ L, dist g target < ε := by
+  apply
+    restrictedLatticeApproximationOfScaledInterpolation
+      L nL inf_mem sup_mem target _ ε_pos
+  intro ρ ρ_pos ρ_lt_one x y
+  by_cases xy : x = y
+  · subst y
+    obtain ⟨z, xz⟩ := exists_ne x
+    obtain ⟨g, g_mem, g_at_x, _⟩ :=
+      strict_interpolate x z xz ((ρ • target) x) ((ρ • target) z)
+        (strictGapOfScale budget budget_pos target target_lipschitz
+          ρ_pos ρ_lt_one xz)
+    exact ⟨g, g_mem, g_at_x, g_at_x⟩
+  · exact
+      strict_interpolate x y xy ((ρ • target) x) ((ρ • target) y)
+        (strictGapOfScale budget budget_pos target target_lipschitz
+          ρ_pos ρ_lt_one xy)
+
+/-- The paper's two-variable Lipschitz budget. -/
+def productBudget
+    {U V : Type*} [MetricSpace U] [MetricSpace V]
+    (C : ℝ) (p q : U × V) : ℝ :=
+  dist p.2 q.2 + C * dist p.1 q.1
+
+theorem productBudget_pos
+    {U V : Type*} [MetricSpace U] [MetricSpace V]
+    {C : ℝ} (C_pos : 0 < C) {p q : U × V} (pq_ne : p ≠ q) :
+    0 < productBudget C p q := by
+  by_cases first_eq : p.1 = q.1
+  · have second_ne : p.2 ≠ q.2 := by
+      intro second_eq
+      exact pq_ne (Prod.ext first_eq second_eq)
+    have second_pos : 0 < dist p.2 q.2 := dist_pos.mpr second_ne
+    have first_nonneg : 0 ≤ dist p.1 q.1 := dist_nonneg
+    dsimp [productBudget]
+    nlinarith
+  · have first_pos : 0 < dist p.1 q.1 := dist_pos.mpr first_eq
+    have second_nonneg : 0 ≤ dist p.2 q.2 := dist_nonneg
+    dsimp [productBudget]
+    nlinarith
+
+/--
+Lemma 9 specialized to compact metric `U × V` and the paper's
+`dist_V + C * dist_U` budget.
+-/
+theorem restrictedStoneWeierstrassProduct
+    {U V : Type*} [MetricSpace U] [MetricSpace V]
+    [CompactSpace U] [CompactSpace V] [Nontrivial (U × V)]
+    {C : ℝ} (C_pos : 0 < C)
+    (L : Set C(U × V, ℝ)) (nL : L.Nonempty)
+    (inf_mem : ∀ f ∈ L, ∀ g ∈ L, f ⊓ g ∈ L)
+    (sup_mem : ∀ f ∈ L, ∀ g ∈ L, f ⊔ g ∈ L)
+    (strict_interpolate :
+      ∀ p q : U × V, p ≠ q → ∀ a b : ℝ,
+        |a - b| < productBudget C p q →
+        ∃ g ∈ L, g p = a ∧ g q = b)
+    (target : C(U × V, ℝ))
+    (target_lipschitz :
+      ∀ p q, |target p - target q| ≤ productBudget C p q)
+    {ε : ℝ} (ε_pos : 0 < ε) :
+    ∃ g ∈ L, dist g target < ε :=
+  restrictedStoneWeierstrass (productBudget C)
+    (fun p q => productBudget_pos C_pos) L nL inf_mem sup_mem
+    strict_interpolate target target_lipschitz ε_pos
+
 #print axioms targetRelativeLatticeApproximation
+#print axioms existsStrictScaleNear
+#print axioms restrictedStoneWeierstrass
+#print axioms restrictedStoneWeierstrassProduct
 
 end LipschitzTransformerFormal
