@@ -10,6 +10,6 @@
   "verified_manifest_entry_count": 47,
   "upload_manifest_sha256": "13fa95c20ae06710cf0d6f2d77f5eef9fa197e035b018cdd04afe32ef52b65a6",
   "published_at": "2026-07-31T03:25:19Z",
-  "winning_branch": "orx/evaluator-visible-claims-4-and-5-formal-evidence",
+  "winning_branch": "release/evaluator-claims-4-and-5",
   "winning_git_sha": "ab99c63af872806bc99af28b049db3ac426af4fe"
 }

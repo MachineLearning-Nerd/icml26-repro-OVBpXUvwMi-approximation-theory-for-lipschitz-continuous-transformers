@@ -122,8 +122,10 @@ already earned.
 
 Important experiment branches:
 
-- [judged toy baseline](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/judged-toy-baseline)
-- [direct symbolic proof certificates](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/direct-symbolic-proof-certificates)
-- [assumption-satisfying falsification audit](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/assumption-satisfying-falsification-audit)
-- [cumulative evaluator-visible candidate](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/cumulative-evaluator-visible-release-candidate)
-- [release-gated artifact](https://github.com/MachineLearning-Nerd/icml26-repro-OVBpXUvwMi-approximation-theory-for-lipschitz-continuous-transformers/tree/orx/release-gated-publication-artifact)
+- [judged toy baseline](https://github.com/MachineLearning-Nerd/icml26-approximation-theory-lipschitz-continuous-transformers/tree/audit/judged-toy-baseline)
+- [direct symbolic proof certificates](https://github.com/MachineLearning-Nerd/icml26-approximation-theory-lipschitz-continuous-transformers/tree/audit/direct-symbolic-proof-certificates)
+- [assumption-satisfying falsification audit](https://github.com/MachineLearning-Nerd/icml26-approximation-theory-lipschitz-continuous-transformers/tree/audit/assumption-satisfying-falsification)
+- [cumulative evaluator-visible candidate](https://github.com/MachineLearning-Nerd/icml26-approximation-theory-lipschitz-continuous-transformers/tree/release/cumulative-evaluator-candidate)
+- [release-gated artifact](https://github.com/MachineLearning-Nerd/icml26-approximation-theory-lipschitz-continuous-transformers/tree/release/release-gated-artifact)
+- [Lean formal verification for Claims 4/5](https://github.com/MachineLearning-Nerd/icml26-approximation-theory-lipschitz-continuous-transformers/tree/formal/claims-4-and-5-lean)
+- [evaluator-visible Claims 4/5 evidence](https://github.com/MachineLearning-Nerd/icml26-approximation-theory-lipschitz-continuous-transformers/tree/release/evaluator-claims-4-and-5)
