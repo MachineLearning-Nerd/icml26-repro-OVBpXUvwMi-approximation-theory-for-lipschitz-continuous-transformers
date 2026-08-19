@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this reproduction or its audit artifacts, please cite this repository and the original paper."
+type: software
+title: "Independent reproduction of Approximation Theory for Lipschitz Continuous Transformers"
+version: "1.0.0"
+date-released: 2026-08-19
+authors:
+  - name: MachineLearning-Nerd
+repository-code: "https://github.com/MachineLearning-Nerd/icml26-approximation-theory-lipschitz-continuous-transformers"
+url: "https://github.com/MachineLearning-Nerd/icml26-approximation-theory-lipschitz-continuous-transformers"
+abstract: "Scoped proof and reproduction audit of Approximation Theory for Lipschitz Continuous Transformers, with five verified claim contracts and a medium-confidence caveat for the matrix-level realization in Claim 4."
+keywords:
+  - Lipschitz Transformers
+  - approximation theory
+  - Wasserstein distance
+  - Lean formalization
+  - reproduction
+preferred-citation:
+  type: article
+  title: "Approximation Theory for Lipschitz Continuous Transformers"
+  authors:
+    - family-names: Furuya
+      given-names: Takashi
+    - family-names: Murari
+      given-names: Davide
+    - family-names: Schönlieb
+      given-names: Carola-Bibiane
+  year: 2026
+  url: "https://arxiv.org/abs/2602.15503"
+

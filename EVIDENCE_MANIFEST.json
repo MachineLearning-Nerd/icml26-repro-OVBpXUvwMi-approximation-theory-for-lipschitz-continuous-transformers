@@ -1,0 +1,32 @@
+{
+  "schema_version": "1",
+  "paper_source": "arXiv:2602.15503",
+  "overall_status": "ALL_FIVE_CLAIMS_VERIFIED_SCOPED_CLAIM_4_MATRIX_REALIZATION_MEDIUM_CONFIDENCE",
+  "required_evidence": [
+    "run_reproduction.py",
+    "reproduction/proof_verifier.py",
+    "reproduction/independent_checker.py",
+    "reproduction/negative_controls.py",
+    "reproduction/candidate_validator.py",
+    "space/evidence/current/claim_1",
+    "space/evidence/current/claim_2",
+    "space/evidence/current/claim_3",
+    "space/evidence/current/claim_4",
+    "space/evidence/current/claim_5",
+    "space/evidence/current/source_manifest.json",
+    "space/pages",
+    "LipschitzTransformerFormal",
+    "branch-audit.md"
+  ],
+  "controls": {
+    "proof_dependency_nodes": 25,
+    "negative_controls_rejected": 5,
+    "source_version_pinned": true,
+    "publication_navigation_checked": true
+  },
+  "source_hashes": {
+    "eprint_archive": "d7d496f38d43b90a9056463183dd7368c4e620af49324a8b16f43f5d67dc80a2",
+    "ar5iv_html": "c4996a8ecb30cad3e652faf70a2c29430fc8d3a58c682e3535d4837f2a4ce1e5"
+  }
+}
+

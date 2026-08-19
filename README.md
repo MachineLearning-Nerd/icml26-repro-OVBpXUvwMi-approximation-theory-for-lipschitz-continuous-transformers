@@ -40,6 +40,14 @@ The verdicts below are scoped to the explicit contracts in
 the recorded proof/evidence path satisfies that contract; it is not a claim
 that a finite numerical experiment proves a universal theorem.
 
+Overall status: `ALL_FIVE_CLAIMS_VERIFIED_SCOPED_CLAIM_4_MATRIX_REALIZATION_MEDIUM_CONFIDENCE`.
+Claims 1, 2, 3, and 5 have high-confidence proof or architecture certificates;
+Claim 4 is verified at medium confidence because the abstract Lean deduction
+assumes paper-class premises whose exact matrix-level realization is
+source-audited but not itself encoded as Lean matrices. `publication_allowed=false`,
+`score_claim=false`, and `official_author_endorsement=false` until an
+independent evaluator judges the public revision.
+
 | Claim | Paper result | Evidence and production path | Verdict |
 | --- | --- | --- | --- |
 | 1 | Lemma 1: an admissible ReLU Euler MLP layer is 1-Lipschitz | [`proof_verifier.py`](reproduction/proof_verifier.py) checks the gradient, segment Jacobian, PSD spectrum, and piecewise-affine argument; the independent checker exhausts 1,024 activation masks at `d=16`; a non-admissible control is rejected | **VERIFIED · HIGH** |
@@ -148,6 +156,10 @@ numeric checks are deliberately downscaled corroboration (`d=16`, `d=32`,
   doi           = {10.48550/arXiv.2602.15503}
 }
 ```
+
+Machine-readable citation metadata is also available in
+[`CITATION.cff`](CITATION.cff), and the author note is kept separately in
+[`AUTHOR_THANK_YOU.md`](AUTHOR_THANK_YOU.md).
 
 ## Thank you
 

@@ -1,0 +1,36 @@
+{
+  "schema_version": "1",
+  "overall_status": "ALL_FIVE_CLAIMS_VERIFIED_SCOPED_CLAIM_4_MATRIX_REALIZATION_MEDIUM_CONFIDENCE",
+  "source_scope": "arXiv:2602.15503",
+  "cumulative_evidence": "PASS",
+  "claims": {
+    "C1": "VERIFIED_SCOPED_HIGH",
+    "C2": "VERIFIED_SCOPED_HIGH",
+    "C3": "VERIFIED_SCOPED_HIGH",
+    "C4": "VERIFIED_SCOPED_MEDIUM",
+    "C5": "VERIFIED_SCOPED_HIGH"
+  },
+  "controls": {
+    "proof_dependency_nodes": 25,
+    "negative_controls_rejected": 5,
+    "lean_sorry_axiom": false
+  },
+  "historical_scores": [
+    {
+      "points": 8,
+      "total": 10,
+      "space_revision": "c09976f4189cfa624d6dbb8ac4ef96d14eb113e3",
+      "current_score_claim": false
+    },
+    {
+      "points": 5,
+      "total": 10,
+      "space_revision": "df0a8cc0348a130d23bce8f00c22eaa00452aa3d",
+      "current_score_claim": false
+    }
+  ],
+  "forecast": "9/10-10/10",
+  "publication_allowed": false,
+  "official_author_endorsement": false
+}
+
